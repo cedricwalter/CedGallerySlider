@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="3.4" type="module" client="site" method="upgrade">
+    <name>mod_cedgalleryslider | Galaxiis.com</name>
+
+    <creationDate>2016-12-31</creationDate>
+
+    <version>1.4.1</version>
+
+    <author>Galaxiis</author>
+    <authorEmail>galaxiiscom@gmail.com</authorEmail>
+    <authorUrl>www.galaxiis.com</authorUrl>
+
+    <copyright>Copyright (C) 2013-2016 galaxiis.com All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL 3.0</license>
+
+    <description>MOD_CEDGALLERYSLIDER_XML_DESCRIPTION</description>
+
+    <files>
+        <filename module="mod_cedgalleryslider">mod_cedgalleryslider.php</filename>
+        <filename module="mod_cedgalleryslider">index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">en-GB.mod_cedgalleryslider.ini</language>
+        <language tag="en-GB">en-GB.mod_cedgalleryslider.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="components/com_cedgalleryslider/fields">
+                <field name="autoplay" type="radio" default="1"
+                       label="MOD_CEDGALLERYSLIDER_AUTOPLAY"
+                       description="MOD_CEDGALLERYSLIDER_AUTOPLAY_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <!-- TODO $DragOrientation: 3,  //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0) -->
+
+
+                <field name="responsive" type="radio" default="1"
+                       label="MOD_CEDGALLERYSLIDER_RESPONSIVE"
+                       description="MOD_CEDGALLERYSLIDER_RESPONSIVE_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field name="display-caption" type="radio" default="0"
+                       label="MOD_CEDGALLERYSLIDER_DISPLAY_CAPTION"
+                       description="MOD_CEDGALLERYSLIDER_DISPLAY_CAPTION_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field name="slideduration" type="text" default="500" label="MOD_CEDGALLERYSLIDER_SLIDE_DURATION"
+                       required="true"
+                       description="MOD_CEDGALLERYSLIDER_SLIDE_DURATION_DESC"/>
+
+                <field name="background-color" type="color" default="#24262e"
+                       label="MOD_CEDGALLERYSLIDER_BKG_COLOR"
+                       required="true"
+                       validate="color"
+                       description="MOD_CEDGALLERYSLIDER_BKG_COLOR_DESC"/>
+
+                <field
+                        name="folder"
+                        type="folderlist"
+                        label="MOD_CEDGALLERYSLIDER_FOLDER"
+                        description="MOD_CEDGALLERYSLIDER_FOLDER_DESC"
+                        hide_default="1"
+                        directory="images"
+                        default="installation"
+                        exclude="administrator|component|cache|includes|language|libraries|logs|media|modules|plugins|templates|test|tmp|bin|cli|layouts"/>
+
+
+                <field name="width" type="text" default="800" label="MOD_CEDGALLERYSLIDER_WIDTH"
+                       required="true"
+                       size="100"
+                       length="100"
+                       maxlength="400"
+                       description="MOD_CEDGALLERYSLIDER_WIDTH_DESC"/>
+                <field name="height" type="text" default="800" label="MOD_CEDGALLERYSLIDER_HEIGHT"
+                       required="true"
+                       size="100"
+                       length="100"
+                       maxlength="400"
+                       description="MOD_CEDGALLERYSLIDER_HEIGHT_DESC"/>
+
+                <field name="sorting" type="radio" default="exif"
+                       label="MOD_CEDGALLERYSLIDER_SORTING" description="MOD_CEDGALLERYSLIDER_SORTING_DESC"
+                       class="btn-group">
+                    <option value="none">MOD_CEDGALLERYSLIDER_SORTING_NONE</option>
+                    <option value="random">MOD_CEDGALLERYSLIDER_SORTING_RANDOM</option>
+                    <option value="reverse">MOD_CEDGALLERYSLIDER_SORTING_RANDOM</option>
+                    <option value="exif">MOD_CEDGALLERYSLIDER_SORTING_RANDOM</option>
+                </field>
+
+            </fieldset>
+            <fieldset name="transitions" label="MOD_CEDGALLERYSLIDER_TAB_TRANSITIONS">
+
+                <field name="spacer_effects" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Get 385 additional transition effects' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedgalleryslider-subscribe/&quot;&gt;get the Premium Version of CedGallerySlider now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+
+
+                <field name="transition-twins-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_TWINS"
+                       description="MOD_CEDGALLERYSLIDER_TWINS_DESC" multiple="multiple">
+                    <option value="{$Duration:700,$Opacity:2,$Brother:{$Duration:1000,$Opacity:2}}">MOD_CEDGALLERYSLIDER_TWINS_1</option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:-1,$Easing:{$Zoom:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$Opacity:2,$Round:{$Rotate:0.5},$Brother:{$Duration:1200,$Zoom:1,$Rotate:1,$Easing:$JssorEasing$.$EaseSwing,$Opacity:2,$Round:{$Rotate:0.5},$Shift:90}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_2
+                    </option>
+                    <option value="{$Duration:1400,$Zoom:1.5,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Zoom:$JssorEasing$.$EaseInSine},$ScaleHorizontal:0.25,$Opacity:2,$ZIndex:-10,$Brother:{$Duration:1400,$Zoom:1.5,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Zoom:$JssorEasing$.$EaseInSine},$ScaleHorizontal:0.25,$Opacity:2,$ZIndex:-10}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_3
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:1,$Easing:{$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$Opacity:2,$Round:{$Rotate:1},$ZIndex:-10,$Brother:{$Duration:1200,$Zoom:11,$Rotate:-1,$Easing:{$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$Opacity:2,$Round:{$Rotate:1},$ZIndex:-10,$Shift:600}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_4
+                    </option>
+                    <option value="{$Duration:1500,$Cols:2,$FlyDirection:1,$ChessMode:{$Column:3},$Easing:{$Left:$JssorEasing$.$EaseInOutCubic},$ScaleHorizontal:0.5,$Opacity:2,$Brother:{$Duration:1500,$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_5
+                    </option>
+
+                    <option value="{$Duration:1500,$Zoom:1,$Rotate:0.1,$During:{$Left:[0.6,0.4],$Top:[0.6,0.4],$Rotate:[0.6,0.4],$Zoom:[0.6,0.4]},$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Top:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.5,$Opacity:2,$Brother:{$Duration:1000,$Zoom:11,$Rotate:-0.5,$Easing:{$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$Opacity:2,$Shift:200}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_6
+                    </option>
+                    <option value="{$Duration:1500,$During:{$Left:[0.6,0.4]},$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true,$Brother:{$Duration:1000,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_7
+                    </option>
+                    <option value="{$Duration:1500,$Zoom:11,$Rotate:0.5,$During:{$Left:[0.4,0.6],$Top:[0.4,0.6],$Rotate:[0.4,0.6],$Zoom:[0.4,0.6]},$Easing:{$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.5,$Opacity:2,$Brother:{$Duration:1000,$Zoom:1,$Rotate:-0.5,$Easing:{$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$Opacity:2,$Shift:200}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_8
+                    </option>
+                    <option value="{$Duration:1200,$Rotate:-0.1,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Top:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$ScaleHorizontal:0.25,$ScaleVertical:0.5,$Opacity:2,$Brother:{$Duration:1200,$Rotate:0.1,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Top:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$ScaleHorizontal:0.1,$ScaleVertical:0.7,$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_9
+                    </option>
+                    <option value="{$Duration:1600,$Rows:2,$FlyDirection:1,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$Brother:{$Duration:1600,$Rows:2,$FlyDirection:2,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_10
+                    </option>
+                    <option value="{$Duration:1600,$Cols:2,$FlyDirection:8,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$Brother:{$Duration:1600,$Cols:2,$FlyDirection:4,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_11
+                    </option>
+                    <option value="{$Duration:1200,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$Brother:{$Duration:1200,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_12
+                    </option>
+                    <option value="{$Duration:1200,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$Brother:{$Duration:1200,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_13
+                    </option>
+                    <option value="{$Duration:1200,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$ZIndex:-10,$Brother:{$Duration:1200,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$ZIndex:-10,$Shift:-100}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_14
+                    </option>
+                    <option value="{$Duration:1200,$Delay:40,$Cols:6,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:{$Left:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$ZIndex:-10,$Brother:{$Duration:1200,$Delay:40,$Cols:6,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:{$Top:$JssorEasing$.$EaseInOutQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$ZIndex:-10,$Shift:-100}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_15
+                    </option>
+                    <option value="{$Duration:1500,$Rotate:0.1,$During:{$Left:[0.6,0.4],$Top:[0.6,0.4],$Rotate:[0.6,0.4]},$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Top:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$ScaleHorizontal:0.1,$ScaleVertical:0.7,$Opacity:2,$Brother:{$Duration:1000,$Rotate:-0.1,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInQuad,$Top:$JssorEasing$.$EaseInQuad,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.5,$Opacity:2}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_16
+                    </option>
+                    <option value="{$Duration:1600,$Delay:40,$Cols:12,$During:{$Left:[0.4,0.6]},$SlideOut:true,$FlyDirection:2,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Opacity:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:0.2,$Opacity:2,$Outside:true,$Round:{$Top:0.5},$Brother:{$Duration:1000,$Delay:40,$Cols:12,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:1028,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Opacity:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:0.2,$Opacity:2,$Round:{$Top:0.5}}}">
+                        MOD_CEDGALLERYSLIDER_TWINS_17
+                    </option>
+                </field>
+
+                <field name="transition-fade-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FADE"
+                       description="MOD_CEDGALLERYSLIDER_FADE_DESC" multiple="multiple">
+                    <option value="{$Duration:1200,$Opacity:2}">MOD_CEDGALLERYSLIDER_FADE_1</option>
+                    <option value="{$Duration:1200,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_2
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Left:[0.3,0.7]},$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_3
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Top:[0.3,0.7]},$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_4
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Top:[0.3,0.7]},$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_5
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$ChessMode:{$Column:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_6
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$During:{$Top:[0.3,0.7]},$FlyDirection:4,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_7
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$During:{$Top:[0.3,0.7]},$FlyDirection:4,$ChessMode:{$Row:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_8
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_9
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:5,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_10
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_11
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_12
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_13
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_14
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$SlideOut:true,$FlyDirection:1,$ChessMode:{$Column:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_15
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$SlideOut:true,$FlyDirection:8,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_16
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$SlideOut:true,$FlyDirection:4,$ChessMode:{$Row:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_17
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$SlideOut:true,$FlyDirection:2,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_18
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:5,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_19
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_20
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Left:[0.3,0.7]},$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_21
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Top:[0.3,0.7]},$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_22
+                    </option>
+                    <option value="{$Duration:1200,$During:{$Top:[0.3,0.7]},$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_23
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$ChessMode:{$Column:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_24
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$During:{$Top:[0.3,0.7]},$FlyDirection:4,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_25
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$During:{$Top:[0.3,0.7]},$FlyDirection:4,$ChessMode:{$Row:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_26
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_27
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:5,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_28
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_29
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_30
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_31
+                    </option>
+                    <option value="{$Duration:1200,$SlideOut:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_32
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$SlideOut:true,$FlyDirection:1,$ChessMode:{$Column:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_33
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$SlideOut:true,$FlyDirection:4,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_34
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$SlideOut:true,$FlyDirection:4,$ChessMode:{$Row:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_35
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$SlideOut:true,$FlyDirection:1,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_36
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:5,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Outside:true}">
+                        MOD_CEDGALLERYSLIDER_FADE_37
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Clip:3,$Assembly:260,$Easing:{$Clip:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_38
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Clip:12,$Assembly:260,$Easing:{$Clip:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_39
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Clip:3,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$JssorEasing$.$EaseOutCubic,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_40
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Clip:12,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$JssorEasing$.$EaseOutCubic,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_41
+                    </option>
+                    <option value="{$Duration:800,$Delay:30,$Cols:8,$Rows:4,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_42
+                    </option>
+                    <option value="{$Duration:1000,$Delay:80,$Cols:8,$Rows:4,$Opacity:2}">MOD_CEDGALLERYSLIDER_FADE_43</option>
+                    <option value="{$Duration:800,$Delay:30,$Cols:8,$Rows:4,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Opacity:2}">MOD_CEDGALLERYSLIDER_FADE_44</option>
+                    <option value="{$Duration:800,$Delay:30,$Cols:8,$Rows:4,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FADE_45
+                    </option>
+                </field>
+
+                <field name="transition-swing-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_SWING"
+                       description="MOD_CEDGALLERYSLIDER_SWING_DESC" multiple="multiple">
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_1
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_2
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_3
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_4
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$ChessMode:{$Column:3,$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_5
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_6
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_7
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_8
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_9
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_10
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$ChessMode:{$Column:3,$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_11
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_12
+                    </option>
+                </field>
+
+                <field name="transition-swing-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_SWING_INSIDE"
+                       description="MOD_CEDGALLERYSLIDER_SWING_INSIDE_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_1
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_2
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_3
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_4
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$ChessMode:{$Column:3,$Row:3},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_5
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_6
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_7
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:1.3,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_SWING_INSIDE_8
+                    </option>
+
+                </field>
+
+                <field name="transition-dodge-dance-outside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE"
+                       description="MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.1,0.9],$Top:[0.1,0.9]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.1,0.9],$Top:[0.1,0.9]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_8
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.1,0.9],$Top:[0.1,0.9]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_9
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_10
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_11
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_OUTSIDE_12
+                    </option>
+
+                </field>
+
+                <field name="transition-dodge-dance-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE"
+                       description="MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.1,0.9],$Top:[0.1,0.9]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.1,0.9],$Top:[0.1,0.9]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_8
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.1,0.9],$Top:[0.1,0.9]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_9
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_10
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_11
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_DANCE_INSIDE_12
+                    </option>
+                </field>
+
+                <field name="transition-dodge-pet-outside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE"
+                       description="MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_8
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_9
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_10
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_11
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Outside:true,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_OUTSIDE_12
+                    </option>
+
+                </field>
+
+                <field name="transition-dodge-pet-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE"
+                       description="MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_8
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_9
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_10
+                    </option>
+                    <option value="{$Duration:1500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_11
+                    </option>
+                    <option value="{$Duration:1500,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInWave,$Top:$JssorEasing$.$EaseInWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Round:{$Left:0.8,$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_PET_INSIDE_12
+                    </option>
+                </field>
+                <field name="transition-dodge-pet-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE"
+                       description="MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_1
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_2
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_3
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_4
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Assembly:260,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_5
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_6
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_7
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_8
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_9
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_10
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Assembly:260,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_11
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Outside:true,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_OUTSIDE_12
+                    </option>
+                </field>
+
+                <field name="transition-dodge-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_DODGE_INSIDE"
+                       description="MOD_CEDGALLERYSLIDER_DODGE_INSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_1
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_2
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_3
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_4
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Assembly:260,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_5
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_6
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_7
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_8
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_9
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_10
+                    </option>
+                    <option value="{$Duration:1200,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Assembly:260,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_11
+                    </option>
+                    <option value="{$Duration:1200,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Clip:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_12
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_13
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_14
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_15
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_16
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$SlideOut:true,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_17
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_18
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_19
+                    </option>
+                    <option value="{$Duration:1200,$Delay:60,$Zoom:1,$SlideOut:true,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInJump,$Top:$JssorEasing$.$EaseInJump,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.3,$ScaleVertical:0.3,$Opacity:2,$Round:{$Left:0.8,$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_DODGE_INSIDE_20
+                    </option>
+
+                </field>
+
+                <field name="transition-flutter-outside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$Outside:true,$Round:{$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_1
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$ScaleVertical:0.2,$Outside:true,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_2
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleVertical:0.2,$Outside:true,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:150,$Cols:12,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Opacity:2,$Outside:true,$Round:{$Top:2}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_4
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7]},$SlideOut:true,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$Outside:true,$Round:{$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_5
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$ScaleVertical:0.2,$Outside:true,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_6
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleVertical:0.2,$Outside:true,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:150,$Cols:12,$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Opacity:2,$Outside:true,$Round:{$Top:2}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_OUTSIDE_8
+                    </option>
+                </field>
+
+                <field name="transition-flutter-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_DESC" multiple="multiple">
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7]},$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$Round:{$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_1
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$ScaleVertical:0.2,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_2
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleVertical:0.2,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:150,$Cols:12,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Opacity:2,$Round:{$Top:2}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_4
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7]},$SlideOut:true,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$Round:{$Top:0.8}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_5
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:1,$ScaleVertical:0.2,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_6
+                    </option>
+                    <option value="{$Duration:1800,$Delay:30,$Cols:10,$Rows:5,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:2050,$Easing:{$Left:$JssorEasing$.$EaseInOutSine,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseInOutQuad},$ScaleVertical:0.2,$Round:{$Top:1.3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:150,$Cols:12,$SlideOut:true,$FlyDirection:9,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.2,$ScaleVertical:0.1,$Opacity:2,$Round:{$Top:2}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_INSIDE_8
+                    </option>
+                </field>
+
+                <field name="transition-flutter-inside-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_ROTATE"
+                       description="MOD_CEDGALLERYSLIDER_ROTATE_DESC" multiple="multiple">
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:11,$Rotate:true,$FlyDirection:6,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:1,$ScaleVertical:2,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_1
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:11,$Rotate:true,$FlyDirection:5,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:2,$ScaleVertical:1,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_2
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:1,$Rotate:true,$FlyDirection:6,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$ScaleVertical:1,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_3
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:1,$Rotate:true,$FlyDirection:5,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$ScaleVertical:0.3,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_4
+                    </option>
+                    <option value="{$Duration:1000,$Rows:2,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:6,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:1,$ScaleVertical:2,$Opacity:2,$Round:{$Rotate:0.85}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_5
+                    </option>
+                    <option value="{$Duration:1000,$Cols:2,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:5,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$ScaleVertical:2,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_6
+                    </option>
+                    <option value="{$Duration:1000,$Rows:2,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:6,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:0.5,$ScaleVertical:1,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_7
+                    </option>
+                    <option value="{$Duration:1000,$Cols:2,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:5,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:0.5,$ScaleVertical:0.3,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_8
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:11,$Rotate:true,$FlyDirection:6,$Assembly:2049,$ChessMode:{$Row:28},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$ScaleVertical:2,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_9
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:11,$Rotate:true,$FlyDirection:5,$Assembly:2049,$ChessMode:{$Column:19},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:1,$ScaleVertical:2,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_10
+                    </option>
+                    <option value="{$Duration:1000,$Rows:2,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:6,$Assembly:2049,$ChessMode:{$Row:28},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:3,$ScaleVertical:1,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_11
+                    </option>
+                    <option value="{$Duration:1000,$Cols:2,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:5,$Assembly:2049,$ChessMode:{$Column:19},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:1,$ScaleVertical:2,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_12
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$Easing:{$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_13
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_14
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_15
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_16
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_17
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_18
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_19
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_20
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:11,$Rotate:true,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.7}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_21
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$Easing:{$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_22
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_23
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_24
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_25
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_26
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_27
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_28
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_29
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$Rotate:true,$SlideOut:true,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInExpo},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2,$Round:{$Rotate:0.8}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_30
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_31
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Left:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_32
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Left:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_33
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Top:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:4,$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleVertical:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_34
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Top:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:8,$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleVertical:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_35
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:5,$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_36
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:6,$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_37
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:9,$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_38
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Rotate:true,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$FlyDirection:10,$Easing:{$Zoom:$JssorEasing$.$EaseSwing,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseSwing},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_39
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$Easing:{$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_40
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_41
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_42
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleVertical:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_43
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleVertical:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_44
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$ScaleVertical:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_45
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$ScaleVertical:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_46
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$ScaleVertical:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_47
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$Rotate:true,$SlideOut:true,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear,$Rotate:$JssorEasing$.$EaseInCubic},$ScaleHorizontal:0.5,$ScaleVertical:0.5,$Opacity:2,$Round:{$Rotate:0.5}}">
+                        MOD_CEDGALLERYSLIDER_ROTATE_48
+                    </option>
+
+                </field>
+                <field name="transition-zoom-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:11,$FlyDirection:4,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleVertical:2,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_1
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:11,$FlyDirection:1,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_2
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:1,$FlyDirection:4,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:1,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_3
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:1,$FlyDirection:1,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.5,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_4
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:11,$SlideOut:true,$FlyDirection:4,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:2,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_5
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:11,$SlideOut:true,$FlyDirection:1,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_6
+                    </option>
+                    <option value="{$Duration:1200,$Rows:2,$Zoom:1,$SlideOut:true,$FlyDirection:4,$Assembly:2049,$ChessMode:{$Row:15},$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:1,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_7
+                    </option>
+                    <option value="{$Duration:1200,$Cols:2,$Zoom:1,$SlideOut:true,$FlyDirection:1,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:0.5,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_8
+                    </option>
+                </field>
+                <field name="transition-zoom-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1000,$Zoom:11,$Easing:{$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_1
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_2
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$Opacity:2,$Round:{$Top:2.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_3
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_4
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_5
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_6
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_7
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_IN_8
+                    </option>
+                </field>
+                <field name="transition-zoom-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_DESC" multiple="multiple">
+                    <option value="{$Duration:1000,$Zoom:11,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_1
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$Easing:{$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_2
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_3
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_4
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_5
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_6
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_7
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_P_OUT_8
+                    </option>
+                </field>
+                <field name="transition-zoom-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_DESC" multiple="multiple">
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_1
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:11,$SlideOut:true,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$ScaleHorizontal:4,$ScaleVertical:4,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_2
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$Easing:{$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_3
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_4
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_5
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleVertical:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_6
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleVertical:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_7
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:5,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_IN_8
+                    </option>
+                </field>
+                <field name="transition-collapse-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:6,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_1
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:9,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_2
+                    </option>
+                    <option value="{$Duration:1200,$Zoom:1,$FlyDirection:10,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$ScaleHorizontal:0.6,$ScaleVertical:0.6,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_3
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$SlideOut:true,$Easing:{$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_4
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$SlideOut:true,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_5
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_6
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_7
+                    </option>
+                    <option value="{$Duration:1000,$Zoom:1,$SlideOut:true,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInExpo,$Zoom:$JssorEasing$.$EaseInExpo,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_ZOOM_M_OUT_8
+                    </option>
+                </field>
+                <field name="transition-collapse-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_DESC" multiple="multiple">
+                    <option value="{$Duration:1000,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2049,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_1
+                    </option>
+                    <option value="{$Duration:500,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_2
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_3
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_4
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationRectangle,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_5
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationCross,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_6
+                    </option>
+                    <option value="{$Duration:800,$Delay:200,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:2049}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_7
+                    </option>
+                    <option value="{$Duration:500,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_8
+                    </option>
+                    <option value="{$Duration:1000,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Easing:$JssorEasing$.$EaseOutQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COLLAPSE_9
+                    </option>
+                </field>
+
+                <field name="transition-coupound-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1200,$Cols:8,$Rows:4,$Clip:15,$During:{$Top:[0.5,0.5],$Clip:[0,0.5]},$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Column:12},$ScaleClip:0.5}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_1
+                    </option>
+                    <option value="{$Duration:1200,$Cols:8,$Rows:4,$Clip:15,$During:{$Top:[0.5,0.5],$Clip:[0,0.5]},$FlyDirection:8,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Column:12},$ScaleClip:0.5}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_2
+                    </option>
+                    <option value="{$Duration:1200,$Cols:6,$Rows:6,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8],$Clip:[0,0.2]},$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Clip:$JssorEasing$.$EaseSwing},$ScaleClip:0.5}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_3
+                    </option>
+                    <option value="{$Duration:1200,$Cols:6,$Rows:6,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8],$Clip:[0,0.2]},$SlideOut:true,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Clip:$JssorEasing$.$EaseSwing},$ScaleClip:0.5}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_4
+                    </option>
+                    <option value="{$Duration:4000,$Delay:80,$Cols:12,$Clip:15,$During:{$Left:[0.35,0.65],$Top:[0.35,0.65],$Clip:[0,0.15]},$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:2049,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleVertical:0.45,$ScaleClip:0.7,$Round:{$Top:4}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_5
+                    </option>
+                    <option value="{$Duration:4000,$Delay:80,$Cols:12,$Clip:15,$During:{$Left:[0.35,0.65],$Top:[0.35,0.65],$Clip:[0,0.15]},$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:2049,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleVertical:0.45,$ScaleClip:0.7,$Round:{$Top:4}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_6
+                    </option>
+                    <option value="{$Duration:4000,$Delay:80,$Cols:12,$Clip:11,$Move:true,$During:{$Left:[0.35,0.65],$Top:[0.35,0.65],$Clip:[0,0.1]},$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:2049,$Easing:{$Left:$JssorEasing$.$EaseOutQuad,$Top:$JssorEasing$.$EaseOutJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleVertical:0.7,$ScaleClip:0.7,$Round:{$Top:4}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_7
+                    </option>
+                    <option value="{$Duration:4000,$Delay:80,$Cols:12,$Clip:11,$Move:true,$During:{$Left:[0.35,0.65],$Top:[0.35,0.65],$Clip:[0,0.1]},$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:2049,$Easing:{$Left:$JssorEasing$.$EaseOutQuad,$Top:$JssorEasing$.$EaseOutJump,$Clip:$JssorEasing$.$EaseOutQuad},$ScaleVertical:0.7,$ScaleClip:0.7,$Round:{$Top:4}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_COUMPOUND_8
+                    </option>
+                </field>
+
+                <field name="transition-expand-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_DESC" multiple="multiple">
+
+                    <option value="{$Duration:1000,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_1
+                    </option>
+                    <option value="{$Duration:1000,$Cols:3,$Rows:2,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:$JssorEasing$.$EaseInBounce}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_2
+                    </option>
+                    <option value="{$Duration:500,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_3
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_4
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_5
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationRectangle,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_6
+                    </option>
+                    <option value="{$Duration:800,$Delay:300,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationCross,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_7
+                    </option>
+                    <option value="{$Duration:500,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_8
+                    </option>
+                    <option value="{$Duration:1000,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$Easing:$JssorEasing$.$EaseInQuad}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_EXPAND_9
+                    </option>
+                </field>
+
+                <field name="transition-stripe-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_DESC" multiple="multiple">
+
+                    <option value="{$Duration:2000,$Delay:60,$Cols:15,$SlideOut:true,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:$JssorEasing$.$EaseOutJump,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_1
+                    </option>
+                    <option value="{$Duration:1000,$Delay:40,$Cols:12,$SlideOut:true,$FlyDirection:2,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Opacity:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:0.2,$Opacity:2,$Outside:true,$Round:{$Top:0.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_2
+                    </option>
+                    <option value="{$Duration:1000,$Delay:40,$Cols:12,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseInOutExpo,$Opacity:$JssorEasing$.$EaseInOutQuad},$ScaleHorizontal:0.2,$Opacity:2,$Outside:true,$Round:{$Top:0.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_3
+                    </option>
+                    <option value="{$Duration:400,$Delay:100,$Rows:7,$Clip:4,$Formation:$JssorSlideshowFormations$.$FormationStraight}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_4
+                    </option>
+                    <option value="{$Duration:400,$Delay:100,$Cols:10,$Clip:2,$Formation:$JssorSlideshowFormations$.$FormationStraight}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_5
+                    </option>
+                    <option value="{$Duration:1000,$Rows:6,$Clip:4}">MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_6</option>
+                    <option value="{$Duration:1000,$Cols:8,$Clip:1}">MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_7</option>
+                    <option value="{$Duration:1000,$Rows:6,$Clip:4,$Move:true}">MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_8</option>
+                    <option value="{$Duration:1000,$Cols:8,$Clip:1,$Move:true}">MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_9</option>
+                    <option value="{$Duration:600,$Delay:100,$Rows:7,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_10
+                    </option>
+                    <option value="{$Duration:600,$Delay:100,$Cols:10,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_11
+                    </option>
+                    <option value="{$Duration:800,$Delay:80,$Rows:8,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_12
+                    </option>
+                    <option value="{$Duration:800,$Delay:80,$Cols:12,$FlyDirection:4,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:513,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_13
+                    </option>
+                    <option value="{$Duration:1000,$Rows:6,$FlyDirection:2,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Row:3}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_14
+                    </option>
+                    <option value="{$Duration:1000,$Cols:12,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Column:12}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_15
+                    </option>
+                    <option value="{$Duration:600,$Delay:80,$Rows:6,$Opacity:2}">MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_16</option>
+                    <option value="{$Duration:600,$Delay:80,$Cols:10,$Opacity:2}">MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_17</option>
+                    <option value="{$Duration:800,$Delay:150,$Rows:5,$Clip:8,$Move:true,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:264,$Easing:$JssorEasing$.$EaseInBounce}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_18
+                    </option>
+                    <option value="{$Duration:800,$Delay:150,$Cols:10,$Clip:1,$Move:true,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:264,$Easing:$JssorEasing$.$EaseInBounce}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_STRIPE_19
+                    </option>
+                </field>
+
+                <field name="transition-waveout-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_WAVE"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:60,$Cols:12,$SlideOut:true,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:$JssorEasing$.$EaseInWave,$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:15,$SlideOut:true,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Easing:$JssorEasing$.$EaseInWave,$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationRectangle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationCross,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_8
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_9
+                    </option>
+
+                </field>
+                <field name="transition-wavein-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:60,$Cols:12,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:$JssorEasing$.$EaseInWave,$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:15,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Easing:$JssorEasing$.$EaseInWave,$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationRectangle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationCross,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_8
+                    </option>
+                    <option value="{$Duration:1500,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInWave},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_WAVE_IN_9
+                    </option>
+                </field>
+
+                <field name="transition-jumpout-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:800,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationRectangle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseLinear,$Top:$JssorEasing$.$EaseOutJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_OUT_8
+                    </option>
+                </field>
+
+                <field name="transition-jumpin-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_DESC" multiple="multiple">
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_1
+                    </option>
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_2
+                    </option>
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_3
+                    </option>
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_4
+                    </option>
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationSquare,$Assembly:260,$ChessMode:{$Row:3},$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_5
+                    </option>
+                    <option value="{$Duration:1500,$Delay:800,$Cols:8,$Rows:4,$FlyDirection:10,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationRectangle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_6
+                    </option>
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationCircle,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_7
+                    </option>
+                    <option value="{$Duration:1500,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Assembly:260,$Easing:{$Left:$JssorEasing$.$EaseSwing,$Top:$JssorEasing$.$EaseInJump},$ScaleVertical:0.5,$Round:{$Top:1.5}}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_JUMP_IN_8
+                    </option>
+                </field>
+
+                <field name="transition-parabola-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_DESC" multiple="multiple">
+                    <option value="{$Duration:600,$Delay:100,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:264,$Easing:{$Top:$JssorEasing$.$EaseInQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_1
+                    </option>
+                    <option value="{$Duration:600,$Delay:100,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:264,$Easing:{$Top:$JssorEasing$.$EaseInQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_2
+                    </option>
+                    <option value="{$Duration:600,$Delay:60,$Cols:8,$Rows:4,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$ChessMode:{$Row:3},$Easing:{$Top:$JssorEasing$.$EaseInQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_3
+                    </option>
+                    <option value="{$Duration:600,$Delay:60,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$ChessMode:{$Row:3},$Easing:{$Top:$JssorEasing$.$EaseInQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_4
+                    </option>
+                    <option value="{$Duration:600,$Delay:30,$Cols:8,$Rows:4,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInQuart,$Top:$JssorEasing$.$EaseInQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_5
+                    </option>
+                    <option value="{$Duration:600,$Delay:30,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:6,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Easing:{$Left:$JssorEasing$.$EaseInQuart,$Top:$JssorEasing$.$EaseInQuart,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_PARABOLA_16
+                    </option>
+                </field>
+
+                <field name="transition-float-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_DESC" multiple="multiple">
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:2,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_1
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:4,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_2
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:9,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_3
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:2,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_4
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:4,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:264,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_5
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:10,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:1028,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_6
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:2,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_7
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:4,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:2049,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_8
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$SlideOut:true,$FlyDirection:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:513,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLOAT_9
+                    </option>
+                </field>
+
+                <field name="transition-fly-effect" type="list" default=""
+                       label="MOD_CEDGALLERYSLIDER_FLUTTER_FLY"
+                       description="MOD_CEDGALLERYSLIDER_FLUTTER_FLY_DESC" multiple="multiple">
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:1,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_1
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:8,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_2
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:6,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_3
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:1,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_4
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:8,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:264,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_5
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:5,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:1028,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_6
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:1,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:513,$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_7
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:8,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:2049,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_8
+                    </option>
+                    <option value="{$Duration:600,$Delay:50,$Cols:8,$Rows:4,$FlyDirection:10,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationSwirl,$Assembly:513,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$JssorEasing$.$EaseInCubic,$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2}">
+                        MOD_CEDGALLERYSLIDER_FLUTTER_FLY_9
+                    </option>
+                </field>
+
+                <field name="transition-stone-effect" type="list" default=""
+                       label="Flutter Stone effects"
+                       description="More than than one effect can be choose" multiple="multiple">
+                    <option value="{$Duration:500,$FlyDirection:4,$Easing:$JssorEasing$.$EaseInQuad}">Slide Down</option>
+                    <option value="{$Duration:400,$FlyDirection:1,$Easing:$JssorEasing$.$EaseInQuad}">Slide Right</option>
+                    <option value="{$Duration:1000,$FlyDirection:4,$Easing:$JssorEasing$.$EaseInBounce}">Bounce Down</option>
+                    <option value="{$Duration:1000,$FlyDirection:1,$Easing:$JssorEasing$.$EaseInBounce}">Bounce Right</option>
+                </field>
+            </fieldset>
+
+
+            <fieldset name="Navigator" label="MOD_CEDGALLERYSLIDER_TAB_NAVIGATOR">
+                <field name="thumbnail-navigator-displayPieces" type="integer" default="10"
+                       first="1"
+                       last="20"
+                       step="1"
+                       label="MOD_CEDGALLERYSLIDER_NUMBER_THUMBNAILS" description="MOD_CEDGALLERYSLIDER_NUMBER_THUMBNAILS_DESC"/>
+
+                <field name="thumbnail-navigator" type="radio" default="1"
+                       label="MOD_CEDGALLERYSLIDER_SHOW_THUMBNAILS"
+                       description="MOD_CEDGALLERYSLIDER_SHOW_THUMBNAILS_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="thumbnail-navigator-show" type="radio" default="2"
+                       label="MOD_CEDGALLERYSLIDER_WHEN_THUMBNAILS" description="MOD_CEDGALLERYSLIDER_WHEN_THUMBNAILS_DESC"
+                       class="btn-group">
+                    <option value="2">MOD_CEDGALLERYSLIDER_WHEN_THUMBNAILS_1</option>
+                    <option value="1">MOD_CEDGALLERYSLIDER_WHEN_THUMBNAILS_2</option>
+                    <option value="0">MOD_CEDGALLERYSLIDER_WHEN_THUMBNAILS_3</option>
+                </field>
+                <field name="thumbnail-navigator-action" type="radio" default="3"
+                       label="MOD_CEDGALLERYSLIDER_ACTION_THUMBNAILS" description="MOD_CEDGALLERYSLIDER_ACTION_THUMBNAILS_DESC"
+                       class="btn-group">
+                    <option value="0">MOD_CEDGALLERYSLIDER_ACTION_THUMBNAILS_1</option>
+                    <option value="1">MOD_CEDGALLERYSLIDER_ACTION_THUMBNAILS_2</option>
+                    <option value="2">MOD_CEDGALLERYSLIDER_ACTION_THUMBNAILS_3</option>
+                    <option value="3">MOD_CEDGALLERYSLIDER_ACTION_THUMBNAILS_4</option>
+                </field>
+
+                <field name="spacer_navigator" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Get 9 additional thumbnails navigator' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedgalleryslider-subscribe/&quot;&gt;get the Premium Version of CedGallerySlider now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+
+                <field name="thumbnail-navigator-skin"
+                       label="MOD_CEDGALLERYSLIDER_SKINS_THUMBNAILS"
+                       type="cedgalleryslidernavigator" default="tt-01" class="btn-group">
+                    <option value="tt-01"></option>
+                    <option value="tt-02"></option>
+                    <option value="tt-03"></option>
+                </field>
+            </fieldset>
+
+            <fieldset name="Arrow" label="MOD_CEDGALLERYSLIDER_TAB_ARROW">
+                <field name="arrow-navigator" type="radio" default="1"
+                       label="MOD_CEDGALLERYSLIDER_SHOW_ARROW"
+                       description="MOD_CEDGALLERYSLIDER_SHOW_ARROW_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="arrow-navigator-show" type="radio" default="2"
+                       label="MOD_CEDGALLERYSLIDER_WHEN_ARROW" description="MOD_CEDGALLERYSLIDER_WHEN_ARROW_DESC"
+                       class="btn-group">
+                    <option value="2">MOD_CEDGALLERYSLIDER_WHEN_ARROW_1</option>
+                </field>
+
+                <field name="spacer_arrow" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Get 18 additional arrow style' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedgalleryslider-subscribe/&quot;&gt;get the Premium Version of CedGallerySlider now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+
+                <field name="arrow-navigator-skin" type="cedgallerysliderarrow" default="ta-01"
+                       label="MOD_CEDGALLERYSLIDER_ARROW_STYLE"
+                       description="MOD_CEDGALLERYSLIDER_ARROW_STYLE_DESC"
+                       class="btn-group">
+                    <option value="ta-01"></option>
+
+                </field>
+            </fieldset>
+
+            <fieldset name="Bullets" label="Bullets">
+                <field name="bullet-navigator" type="radio" default="0"
+                       label="MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR"
+                       description="MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="bullet-navigator-show" type="radio" default="2"
+                       label="MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR_SHOW" description="MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR_SHOW_DESC"
+                       class="btn-group">
+                    <option value="2">MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR_SHOW_1</option>
+                    <option value="1">MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR_SHOW_2</option>
+                    <option value="0">MOD_CEDGALLERYSLIDER_BULLET_NAVIGATOR_SHOW_3</option>
+                </field>
+
+                <field name="spacer_bullet" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Get 17 additional bullet style' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedgalleryslider-subscribe/&quot;&gt;get the Premium Version of CedGallerySlider now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+
+                <field name="bullet-navigator-skin" type="cedgallerysliderbullet" default="ta-01"
+                       label="MOD_CEDGALLERYSLIDER_BULLET_STYLE"
+                       description="MOD_CEDGALLERYSLIDER_BULLET_STYLE_DESC"
+                       class="btn-group">
+                    <option value="tb-01">Style 1</option>
+
+                </field>
+            </fieldset>
+
+            <fieldset name="Exif" label="MOD_CEDGALLERYSLIDER_TAB_EXIF">
+                <field name="exifTitle1" type="radio" default="FileName"
+                       label="MOD_CEDGALLERYSLIDER_EXIF_FIRST" description="MOD_CEDGALLERYSLIDER_EXIF_FIRST_DESC"
+                       class="btn-group">
+                    <option value="">MOD_CEDGALLERYSLIDER_EXIF_NOTHING</option>
+                    <option value="iptc.title">MOD_CEDGALLERYSLIDER_EXIF_IPTC</option>
+
+                    <option value="FileName">MOD_CEDGALLERYSLIDER_EXIF_FILENAME</option>
+                    <option value="ImageDescription">MOD_CEDGALLERYSLIDER_EXIF_IMAGE_DESC</option>
+                    <option value="COMPUTED.UserComment">MOD_CEDGALLERYSLIDER_EXIF_USERCOMMENT</option>
+                    <option value="COMPUTED.Copyright">MOD_CEDGALLERYSLIDER_EXIF_COPYRIGHT</option>
+                    <option value="COMPUTED.Copyright.Photographer">MOD_CEDGALLERYSLIDER_EXIF_PHOTOGRAPHER</option>
+                </field>
+                <field name="exifTitle2" type="radio" default=" "
+                       label="MOD_CEDGALLERYSLIDER_EXIF_SECOND" description="MOD_CEDGALLERYSLIDER_EXIF_SECOND_DESC"
+                       class="btn-group">
+                    <option value="">MOD_CEDGALLERYSLIDER_EXIF_NOTHING</option>
+                    <option value="iptc.title">MOD_CEDGALLERYSLIDER_EXIF_IPTC</option>
+
+                    <option value="FileName">MOD_CEDGALLERYSLIDER_EXIF_FILENAME</option>
+                    <option value="ImageDescription">MOD_CEDGALLERYSLIDER_EXIF_IMAGE_DESC</option>
+                    <option value="COMPUTED.UserComment">MOD_CEDGALLERYSLIDER_EXIF_USERCOMMENT</option>
+                    <option value="COMPUTED.Copyright">MOD_CEDGALLERYSLIDER_EXIF_COPYRIGHT</option>
+                    <option value="COMPUTED.Copyright.Photographer">MOD_CEDGALLERYSLIDER_EXIF_PHOTOGRAPHER</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="thumbnails" label="MOD_CEDGALLERYSLIDER_TAB_THUMBNAILS" addfieldpath="components/com_cedgalleryslider/fields">
+                <field name="spacer_morescaling" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Get More Scaling' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedgalleryslider-subscribe/&quot;&gt;get the paid version&lt;/a&gt; of CedGallerySlider to have 4 scaling method&lt;/div&gt;"
+                       default="" description=""/>
+
+                <field name="any" type="cedgalleryslideroriginal" default="1" size="6" label="MOD_CEDGALLERYSLIDER_ORIGINAL_PICTURE"
+                       source="media/com_cedgallery/images/scaling/original.jpg"
+                       description="MOD_CEDGALLERYSLIDER_ORIGINAL_PICTURE_DESC"
+                       class="btn-group"/>
+
+                <field name="jimageResize" type="cedgallerysliderscaling" required="true" default="1" size="6"
+                       label="MOD_CEDGALLERYSLIDER_RESIZING"
+                       description="MOD_CEDGALLERYSLIDER_RESIZING_DESC"
+                       class="btn-group">
+                    <option value="1">MOD_CEDGALLERYSLIDER_RESIZE1</option>
+                    <option value="2">MOD_CEDGALLERYSLIDER_RESIZE2</option>
+                    <option value="3">MOD_CEDGALLERYSLIDER_RESIZE3</option>
+                </field>
+
+                <field name="spacer_moresoutput" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Get More Format (gif, png)' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedgalleryslider-subscribe/&quot;&gt;get the paid version&lt;/a&gt; of CedGallerySlider&lt;/div&gt;"
+                       default="" description=""/>
+                <field name="thumbnailsOutput" type="radio" default="2"
+                       label="MOD_CEDGALLERYSLIDER_THUMBNAILS_TYPE"
+                       description="MOD_CEDGALLERYSLIDER_THUMBNAILS_TYPE_DESC" class="btn-group">
+                    <option value="2">MOD_CEDGALLERYSLIDER_THUMBNAILS_TYPE_JPG</option>
+                </field>
+                <field name="thumbnailHeight" type="integer" default="154"
+                       label="MOD_CEDGALLERYSLIDER_THUMBNAIL_HEIGHT"
+                       description="MOD_CEDGALLERYSLIDER_THUMBNAIL_HEIGHT_DESC"
+                       first="1"
+                       last="400"
+                       step="1"/>
+                <field name="thumbnailWidth" type="integer" default="230"
+                       label="MOD_CEDGALLERYSLIDER_THUMBNAIL_WIDTH"
+                       description="MOD_CEDGALLERYSLIDER_THUMBNAIL_WIDTH_DESC"
+                       first="1"
+                       last="400"
+                       step="1"/>
+                <field name="jpgquality" type="integer" default="85"
+                       first="0"
+                       last="100"
+                       step="5"
+                       label="MOD_CEDGALLERYSLIDER_JPG_QUALITY"
+                       description="MOD_CEDGALLERYSLIDER_JPG_QUALITY_DESC"/>
+                <field name="pngquality" type="integer" default="9"
+                       first="1"
+                       last="10"
+                       step="1"
+                       label="MOD_CEDGALLERYSLIDER_PNG_QUALITY"
+                       description="MOD_CEDGALLERYSLIDER_PNG_QUALITY_DESC"/>
+            </fieldset>
+
+            <fieldset name="Performances" label="MOD_CEDGALLERYSLIDER_TAB_PERFORMANCE">
+                <field name="thumbnails-caching" type="radio" default="0"
+                       label="MOD_CEDGALLERYSLIDER_PERFORMANCE_CACHING" description="MOD_CEDGALLERYSLIDER_PERFORMANCE_CACHING_DESC"
+                       class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
+                <field name="moduleclass_sfx" type="textarea" rows="3" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                       description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+                <field name="cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC"/>
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static"/>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

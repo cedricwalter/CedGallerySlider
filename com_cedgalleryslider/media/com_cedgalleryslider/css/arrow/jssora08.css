@@ -1,0 +1,34 @@
+/**
+ * @package     CedGallerySlider
+ * @subpackage  com_cedgalleryslider
+ *
+ * @copyright   Copyright (C) 2013-2016 galaxiis.com All rights reserved.
+ * @license     The author and holder of the copyright of the software is Cédric Walter. The licensor and as such issuer of the license and bearer of the
+ *              worldwide exclusive usage rights including the rights to reproduce, distribute and make the software available to the public
+ *              in any form is Galaxiis.com
+ *              see LICENSE.txt
+ */
+
+/*
+.jssorb08l              (normal)
+.jssorb08r              (normal)
+.jssorb08l:hover        (normal mouseover)
+.jssorb08r:hover        (normal mouseover)
+.jssorb08ldn            (mousedown)
+.jssorb08rdn            (mousedown)
+*/
+.jssorb08l, .jssorb08r, .jssorb08ldn, .jssorb08rdn
+{
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    background: url(../img/a08.png) no-repeat;
+    overflow:hidden;
+    opacity: .4; filter:alpha(opacity=40);
+}
+.jssorb08l { background-position: -5px -35px; }
+.jssorb08r { background-position: -65px -35px; }
+.jssorb08l:hover { background-position: -5px -35px; opacity: .8; filter:alpha(opacity=80); }
+.jssorb08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
+.jssorb08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
+.jssorb08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
